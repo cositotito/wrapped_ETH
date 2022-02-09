@@ -17,7 +17,7 @@ contract MyContract {
   constructor() {
     weth = WethLike(tokenWETH); // Kovan
     weth.approve(address(this),1000000000000000000000000);
-     weth.approve(tokenWETH,1000000000000000000000000);
+    weth.approve(tokenWETH,1000000000000000000000000);
   }
 
   event Data(uint);
@@ -30,6 +30,12 @@ contract MyContract {
   function depositWETH() external {   
     weth.deposit{ value: 1 }();
     emit DepositWETH(1);
+  }
+
+  event Transfer(uint);
+  function transferWETH(uint _amountEth) public{
+    weth.transfer(0xd0A1E359811322d97991E03f863a0C30C2cF029C,_amountEth);
+    emit Transfer(1);
   }
 
 
